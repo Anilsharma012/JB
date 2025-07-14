@@ -36,6 +36,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Product } from "@shared/types";
+import Header from "@/components/common/Header";
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -61,6 +62,8 @@ export default function Products() {
       imageUrl:
         "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F3915672a959f416695f9d0f2b1105224?format=webp&width=1200&quality=90",
       inStock: true,
+      createdAt: "2024-01-01T00:00:00Z",
+      updatedAt: "2024-01-01T00:00:00Z",
       catalogPdf:
         "https://cdn.builder.io/o/assets%2Fca1cf24c6c334c83ba51991b9affb647%2Fab88a7a1eef24752876cb2e5fd03066b?alt=media&token=e61b2fc5-7697-4571-a3aa-01b53e561e05&apiKey=ca1cf24c6c334c83ba51991b9affb647",
     },
@@ -77,6 +80,8 @@ export default function Products() {
       imageUrl:
         "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F47a2660e8ad3448c93d93260c707cc3d?format=webp&width=1200&quality=90",
       inStock: true,
+      createdAt: "2024-01-02T00:00:00Z",
+      updatedAt: "2024-01-02T00:00:00Z",
       catalogPdf:
         "https://cdn.builder.io/o/assets%2Fca1cf24c6c334c83ba51991b9affb647%2Fab88a7a1eef24752876cb2e5fd03066b?alt=media&token=e61b2fc5-7697-4571-a3aa-01b53e561e05&apiKey=ca1cf24c6c334c83ba51991b9affb647",
     },
@@ -93,6 +98,8 @@ export default function Products() {
       imageUrl:
         "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F38fded8719594e939fcd01905054c404?format=webp&width=1200&quality=90",
       inStock: true,
+      createdAt: "2024-01-02T00:00:00Z",
+      updatedAt: "2024-01-02T00:00:00Z",
       catalogPdf:
         "https://cdn.builder.io/o/assets%2Fca1cf24c6c334c83ba51991b9affb647%2Fab88a7a1eef24752876cb2e5fd03066b?alt=media&token=e61b2fc5-7697-4571-a3aa-01b53e561e05&apiKey=ca1cf24c6c334c83ba51991b9affb647",
     },
@@ -109,6 +116,8 @@ export default function Products() {
       imageUrl:
         "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F47a2660e8ad3448c93d93260c707cc3d?format=webp&width=1200&quality=90",
       inStock: true,
+      createdAt: "2024-01-02T00:00:00Z",
+      updatedAt: "2024-01-02T00:00:00Z",
       catalogPdf:
         "https://cdn.builder.io/o/assets%2Fca1cf24c6c334c83ba51991b9affb647%2Fab88a7a1eef24752876cb2e5fd03066b?alt=media&token=e61b2fc5-7697-4571-a3aa-01b53e561e05&apiKey=ca1cf24c6c334c83ba51991b9affb647",
     },
@@ -125,6 +134,8 @@ export default function Products() {
       imageUrl:
         "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F38fded8719594e939fcd01905054c404?format=webp&width=1200&quality=90",
       inStock: true,
+      createdAt: "2024-01-02T00:00:00Z",
+      updatedAt: "2024-01-02T00:00:00Z",
       catalogPdf:
         "https://cdn.builder.io/o/assets%2Fca1cf24c6c334c83ba51991b9affb647%2Fab88a7a1eef24752876cb2e5fd03066b?alt=media&token=e61b2fc5-7697-4571-a3aa-01b53e561e05&apiKey=ca1cf24c6c334c83ba51991b9affb647",
     },
@@ -141,6 +152,8 @@ export default function Products() {
       imageUrl:
         "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F47a2660e8ad3448c93d93260c707cc3d?format=webp&width=1200&quality=90",
       inStock: true,
+      createdAt: "2024-01-02T00:00:00Z",
+      updatedAt: "2024-01-02T00:00:00Z",
       catalogPdf:
         "https://cdn.builder.io/o/assets%2Fca1cf24c6c334c83ba51991b9affb647%2Fab88a7a1eef24752876cb2e5fd03066b?alt=media&token=e61b2fc5-7697-4571-a3aa-01b53e561e05&apiKey=ca1cf24c6c334c83ba51991b9affb647",
     },
@@ -240,71 +253,7 @@ export default function Products() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-3">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fe47a2c8dea8b451da551bc04f83bbb06?format=webp&width=800"
-                alt="JB Industries Logo"
-                className="h-16 w-auto"
-              />
-              <div className="hidden sm:block">
-                <h1 className="text-3xl font-bold text-gray-900">
-                  JB Industries
-                </h1>
-                <p className="text-xl text-blue-600">
-                  Industries Fastening Solution
-                </p>
-              </div>
-            </Link>
-            <nav className="hidden md:flex space-x-8">
-              <Link
-                to="/"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                to="/services"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                to="/products"
-                className="text-blue-600 font-medium transition-colors"
-              >
-                Products
-              </Link>
-              <Link
-                to="/certifications"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Certifications
-              </Link>
-              <Link
-                to="/contact"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Contact
-              </Link>
-            </nav>
-            <Link to="/quote">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                Get Quote
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Header currentPage="products" />
 
       {/* Hero Section - German Style */}
 

@@ -9,6 +9,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import HighTensileSteel from "./pages/services/HighTensileSteel";
+import StainlessSteel from "./pages/services/StainlessSteel";
+import SolarProjects from "./pages/services/SolarProjects";
+import SolarStreetLight from "./pages/services/SolarStreetLight";
 import Products from "./pages/Products";
 import Certifications from "./pages/Certifications";
 import Contact from "./pages/Contact";
@@ -38,6 +42,19 @@ const App = () => (
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/services/solar-projects" element={<SolarProjects />} />
+        <Route
+          path="/services/solar-street-light"
+          element={<SolarStreetLight />}
+        />
+        <Route path="/services/cctv-installation" element={<Services />} />
+        <Route path="/services/road-construction" element={<Services />} />
+        <Route path="/services/construction-projects" element={<Services />} />
+        <Route
+          path="/services/high-tensile-steel"
+          element={<HighTensileSteel />}
+        />
+        <Route path="/services/stainless-steel" element={<StainlessSteel />} />
         <Route path="/products" element={<Products />} />
         <Route path="/certifications" element={<Certifications />} />
         <Route path="/contact" element={<Contact />} />
@@ -63,4 +80,7 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Create root and render app
+const container = document.getElementById("root")!;
+const root = createRoot(container);
+root.render(<App />);

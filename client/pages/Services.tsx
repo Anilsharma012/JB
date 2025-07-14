@@ -17,9 +17,17 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ImageModal } from "@/components/ui/image-modal";
+import Header from "@/components/common/Header";
 
 export default function Services() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [imageModalOpen, setImageModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState({
+    src: "",
+    alt: "",
+    title: "",
+  });
 
   const banners = [
     {
@@ -39,19 +47,19 @@ export default function Services() {
     },
     {
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F8a14e3d77dae4821a9786760c484a1db?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F8a14e3d77dae4821a9786760c484a1db?format=webp&width=1920&quality=80",
       title: "Precision Components",
       subtitle: "CNC Machined Parts to Exact Specifications",
     },
     {
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F3bb246b707364c0899a08b4b9ffba3c0?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F3bb246b707364c0899a08b4b9ffba3c0?format=webp&width=1920&quality=80",
       title: "Complete Hardware Range",
       subtitle: "Industrial Nuts, Bolts & Custom Fastening Solutions",
     },
     {
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F21eca86535bb4f57b0979ccc68c6e08d?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F21eca86535bb4f57b0979ccc68c6e08d?format=webp&width=1920&quality=80",
       title: "Quality Manufacturing",
       subtitle: "ISO Certified Excellence in Fastener Production",
     },
@@ -75,73 +83,18 @@ export default function Services() {
     window.location.href = "/products";
   };
 
+  const handleImageClick = (
+    imageSrc: string,
+    imageAlt: string,
+    imageTitle: string,
+  ) => {
+    setSelectedImage({ src: imageSrc, alt: imageAlt, title: imageTitle });
+    setImageModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-3">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fe47a2c8dea8b451da551bc04f83bbb06?format=webp&width=800"
-                alt="JB Industries Logo"
-                className="h-16 w-auto"
-              />
-              <div className="hidden sm:block">
-                <h1 className="text-3xl font-bold text-gray-900">
-                  JB Industries
-                </h1>
-                <p className="text-xl text-blue-600">
-                  Industries Fastening Solution
-                </p>
-              </div>
-            </Link>
-            <nav className="hidden md:flex space-x-8">
-              <Link
-                to="/"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                to="/services"
-                className="text-blue-600 font-medium transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                to="/products"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Products
-              </Link>
-              <Link
-                to="/certifications"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Certifications
-              </Link>
-              <Link
-                to="/contact"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Contact
-              </Link>
-            </nav>
-            <Link to="/quote">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                Get Quote
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Header currentPage="services" />
 
       {/* Hero Banner Slider */}
       <section className="relative h-[70vh] overflow-hidden">
@@ -154,11 +107,33 @@ export default function Services() {
               }`}
             >
               <div
-                className="w-full h-full bg-cover bg-center relative"
+                className="w-full h-full bg-cover bg-center relative cursor-pointer group"
                 style={{ backgroundImage: `url(${banner.image})` }}
+                onClick={() =>
+                  handleImageClick(banner.image, banner.title, banner.subtitle)
+                }
               >
                 {/* Dark overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+                <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300"></div>
+
+                {/* Click indicator */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                    <svg
+                      className="w-8 h-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                      />
+                    </svg>
+                  </div>
+                </div>
 
                 {/* JB Industries Watermark */}
                 <div className="absolute top-4 right-4 opacity-20">
@@ -234,9 +209,185 @@ export default function Services() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Core Services
             </h2>
-            <p className="text-xl text-gray-600">
-              Comprehensive fastening solutions for industrial applications
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+              JB Industries provides comprehensive fastening and manufacturing
+              solutions across multiple industries. Our expertise spans from
+              high-tensile steel fasteners to precision machined components,
+              delivering quality, reliability, and innovation in every project.
             </p>
+          </div>
+
+          {/* Service Overview Cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            <Card className="border-gray-200 hover:shadow-lg transition-shadow group">
+              <CardContent className="p-8">
+                <div className="bg-yellow-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                  <Zap className="h-8 w-8 text-yellow-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                  SOLAR PROJECTS
+                </h3>
+                <p className="text-gray-600 text-center mb-6">
+                  Comprehensive solar energy solutions for residential and
+                  commercial applications with cutting-edge technology.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-500">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Photovoltaic cell installation
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Grid-tie and off-grid systems
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Energy storage solutions
+                  </li>
+                </ul>
+                <Link to="/services/solar-projects">
+                  <Button className="w-full mt-6 bg-yellow-600 hover:bg-yellow-700">
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-200 hover:shadow-lg transition-shadow group">
+              <CardContent className="p-8">
+                <div className="bg-orange-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                  <Settings className="h-8 w-8 text-orange-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                  SOLAR STREET LIGHT
+                </h3>
+                <p className="text-gray-600 text-center mb-6">
+                  Energy-efficient solar street lighting solutions for urban and
+                  rural areas with automatic controls.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-500">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    LED lighting technology
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Motion sensor integration
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Weather-resistant design
+                  </li>
+                </ul>
+                <Link to="/services/solar-street-light">
+                  <Button className="w-full mt-6 bg-orange-600 hover:bg-orange-700">
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-200 hover:shadow-lg transition-shadow group">
+              <CardContent className="p-8">
+                <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                  <Shield className="h-8 w-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                  CCTV CAMERA INSTALLATION
+                </h3>
+                <p className="text-gray-600 text-center mb-6">
+                  Professional security camera installation and monitoring
+                  systems for enhanced safety and surveillance.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-500">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    HD and 4K camera systems
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Remote monitoring capabilities
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    24/7 surveillance solutions
+                  </li>
+                </ul>
+                <Link to="/services/cctv-installation">
+                  <Button className="w-full mt-6 bg-blue-600 hover:bg-blue-700">
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-200 hover:shadow-lg transition-shadow group">
+              <CardContent className="p-8">
+                <div className="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                  <Wrench className="h-8 w-8 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                  ROAD CONSTRUCTION
+                </h3>
+                <p className="text-gray-600 text-center mb-6">
+                  Complete road construction and infrastructure development
+                  services with modern equipment and techniques.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-500">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Highway construction
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Bridge and flyover projects
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Quality assurance standards
+                  </li>
+                </ul>
+                <Link to="/services/road-construction">
+                  <Button className="w-full mt-6 bg-green-600 hover:bg-green-700">
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-200 hover:shadow-lg transition-shadow group">
+              <CardContent className="p-8">
+                <div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                  <Package className="h-8 w-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                  CONSTRUCTION PROJECTS
+                </h3>
+                <p className="text-gray-600 text-center mb-6">
+                  Full-scale construction services for residential, commercial,
+                  and industrial building projects.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-500">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Residential buildings
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Commercial complexes
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    Industrial facilities
+                  </li>
+                </ul>
+                <Link to="/services/construction-projects">
+                  <Button className="w-full mt-6 bg-purple-600 hover:bg-purple-700">
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
@@ -310,14 +461,28 @@ export default function Services() {
 
             <div className="grid grid-cols-1 gap-4">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F536025be4d6244ff84d126cfe63225bb%2F307f5d7b039c453ea4f7337bab0b114d?format=webp&width=800"
+                src="https://cdn.builder.io/api/v1/image/assets%2F536025be4d6244ff84d126cfe63225bb%2F307f5d7b039c453ea4f7337bab0b114d?format=webp&width=1200&quality=85"
                 alt="Complete Product Range"
-                className="w-full h-64 object-cover rounded-lg shadow-lg"
+                className="w-full h-64 object-cover rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                onClick={() =>
+                  handleImageClick(
+                    "https://cdn.builder.io/api/v1/image/assets%2F536025be4d6244ff84d126cfe63225bb%2F307f5d7b039c453ea4f7337bab0b114d?format=webp&width=1920&quality=90",
+                    "Complete Product Range",
+                    "Comprehensive Fastening Solutions",
+                  )
+                }
               />
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F536025be4d6244ff84d126cfe63225bb%2F97844ca425bd422293a61059402ef8ee?format=webp&width=800"
+                src="https://cdn.builder.io/api/v1/image/assets%2F536025be4d6244ff84d126cfe63225bb%2F97844ca425bd422293a61059402ef8ee?format=webp&width=1200&quality=85"
                 alt="Specialized Fastening Solutions"
-                className="w-full h-64 object-cover rounded-lg shadow-lg"
+                className="w-full h-64 object-cover rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                onClick={() =>
+                  handleImageClick(
+                    "https://cdn.builder.io/api/v1/image/assets%2F536025be4d6244ff84d126cfe63225bb%2F97844ca425bd422293a61059402ef8ee?format=webp&width=1920&quality=90",
+                    "Specialized Fastening Solutions",
+                    "High-Quality Manufacturing Excellence",
+                  )
+                }
               />
             </div>
           </div>
@@ -512,9 +677,16 @@ export default function Services() {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Ffef6356fd69e43a6bc63db3bb0262367?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Ffef6356fd69e43a6bc63db3bb0262367?format=webp&width=1200&quality=85"
               alt="Manufacturing Facilities and Equipment"
-              className="w-full h-80 object-cover rounded-lg shadow-lg"
+              className="w-full h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              onClick={() =>
+                handleImageClick(
+                  "https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Ffef6356fd69e43a6bc63db3bb0262367?format=webp&width=1920&quality=90",
+                  "Manufacturing Facilities and Equipment",
+                  "Advanced Manufacturing Capabilities",
+                )
+              }
             />
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
@@ -627,9 +799,16 @@ export default function Services() {
               </div>
             </div>
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fad2f5b4c5c2d4b768505492936d5e2fb?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fad2f5b4c5c2d4b768505492936d5e2fb?format=webp&width=1200&quality=85"
               alt="Secondary Operations and Machining"
-              className="w-full h-80 object-cover rounded-lg shadow-lg"
+              className="w-full h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              onClick={() =>
+                handleImageClick(
+                  "https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fad2f5b4c5c2d4b768505492936d5e2fb?format=webp&width=1920&quality=90",
+                  "Secondary Operations and Machining",
+                  "Precision Machining & Operations",
+                )
+              }
             />
           </div>
         </div>
@@ -692,9 +871,16 @@ export default function Services() {
               </div>
             </div>
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F0cf7d7d9639843ba918d2688f0be7b1e?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F0cf7d7d9639843ba918d2688f0be7b1e?format=webp&width=1200&quality=85"
               alt="Industries We Serve"
-              className="w-full h-80 object-cover rounded-lg shadow-lg"
+              className="w-full h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              onClick={() =>
+                handleImageClick(
+                  "https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F0cf7d7d9639843ba918d2688f0be7b1e?format=webp&width=1920&quality=90",
+                  "Industries We Serve",
+                  "Multiple Industry Applications",
+                )
+              }
             />
           </div>
         </div>
@@ -955,6 +1141,15 @@ export default function Services() {
           </div>
         </div>
       </footer>
+
+      {/* Image Modal */}
+      <ImageModal
+        open={imageModalOpen}
+        onOpenChange={setImageModalOpen}
+        imageSrc={selectedImage.src}
+        imageAlt={selectedImage.alt}
+        title={selectedImage.title}
+      />
     </div>
   );
 }

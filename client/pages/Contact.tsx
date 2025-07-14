@@ -17,149 +17,14 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Header from "@/components/common/Header";
 
 export default function Contact() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-3">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fe47a2c8dea8b451da551bc04f83bbb06?format=webp&width=800"
-                alt="JB Industries Logo"
-                className="h-16 w-auto"
-              />
-              <div className="hidden sm:block">
-                <h1 className="text-3xl font-bold text-gray-900">
-                  JB Industries
-                </h1>
-                <p className="text-xl text-blue-600">
-                  Industries Fastening Solution
-                </p>
-              </div>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <Link
-                to="/"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                to="/services"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                to="/products"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Products
-              </Link>
-              <Link
-                to="/certifications"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Certifications
-              </Link>
-              <Link
-                to="/contact"
-                className="text-blue-600 font-medium transition-colors"
-              >
-                Contact
-              </Link>
-            </nav>
-
-            <div className="flex items-center space-x-4">
-              <Link to="/quote">
-                <Button className="hidden md:block bg-blue-600 hover:bg-blue-700 text-white">
-                  Get Quote
-                </Button>
-              </Link>
-
-              {/* Mobile menu button */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
-              >
-                {mobileMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
-                <Link
-                  to="/"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                <Link
-                  to="/about"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  About
-                </Link>
-                <Link
-                  to="/services"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Services
-                </Link>
-                <Link
-                  to="/products"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Products
-                </Link>
-                <Link
-                  to="/certifications"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Certifications
-                </Link>
-                <Link
-                  to="/contact"
-                  className="block px-3 py-2 text-base font-medium text-blue-600 bg-blue-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Contact
-                </Link>
-                <Link to="/quote" onClick={() => setMobileMenuOpen(false)}>
-                  <Button className="w-full mt-3 bg-blue-600 hover:bg-blue-700 text-white">
-                    Get Quote
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </header>
+      <Header currentPage="contact" />
 
       {/* Hero Section */}
       <section
@@ -376,7 +241,7 @@ export default function Contact() {
                       href="mailto:sales@jbindustries.com"
                       className="text-blue-600 hover:text-blue-800 font-medium"
                     >
-                     md@jbindus.com
+                      md@jbindus.com
                     </a>
                   </p>
                   <p>

@@ -18,10 +18,18 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ImageModal } from "@/components/ui/image-modal";
+import Header from "@/components/common/Header";
 
 export default function About() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [imageModalOpen, setImageModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState({
+    src: "",
+    alt: "",
+    title: "",
+  });
 
   const banners = [
     {
@@ -41,13 +49,13 @@ export default function About() {
     },
     {
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F8a14e3d77dae4821a9786760c484a1db?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F8a14e3d77dae4821a9786760c484a1db?format=webp&width=1920&quality=80",
       title: "Premium Components",
       subtitle: "High-Quality Steel Fasteners & Hardware Solutions",
     },
     {
       image:
-        "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F3bb246b707364c0899a08b4b9ffba3c0?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2Fca1cf24c6c334c83ba51991b9affb647%2F3bb246b707364c0899a08b4b9ffba3c0?format=webp&width=1920&quality=80",
       title: "Complete Solutions",
       subtitle: "Comprehensive Range of Industrial Hardware",
     },
@@ -71,145 +79,18 @@ export default function About() {
     window.location.href = "/products";
   };
 
+  const handleImageClick = (
+    imageSrc: string,
+    imageAlt: string,
+    imageTitle: string,
+  ) => {
+    setSelectedImage({ src: imageSrc, alt: imageAlt, title: imageTitle });
+    setImageModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-3">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fe47a2c8dea8b451da551bc04f83bbb06?format=webp&width=800"
-                alt="JB Industries Logo"
-                className="h-16 w-auto"
-              />
-              <div className="hidden sm:block">
-                <h1 className="text-3xl font-bold text-gray-900">
-                  JB Industries
-                </h1>
-                <p className="text-xl text-blue-600">
-                  Industries Fastening Solution
-                </p>
-              </div>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <Link
-                to="/"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="text-blue-600 font-medium transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                to="/services"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                to="/products"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Products
-              </Link>
-              <Link
-                to="/certifications"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Certifications
-              </Link>
-              <Link
-                to="/contact"
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Contact
-              </Link>
-            </nav>
-
-            <div className="flex items-center space-x-4">
-              <Link to="/quote">
-                <Button className="hidden md:block bg-blue-600 hover:bg-blue-700 text-white">
-                  Get Quote
-                </Button>
-              </Link>
-
-              {/* Mobile menu button */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
-              >
-                {mobileMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
-                <Link
-                  to="/"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                <Link
-                  to="/about"
-                  className="block px-3 py-2 text-base font-medium text-blue-600 bg-blue-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  About
-                </Link>
-                <Link
-                  to="/services"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Services
-                </Link>
-                <Link
-                  to="/products"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Products
-                </Link>
-                <Link
-                  to="/certifications"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Certifications
-                </Link>
-                <Link
-                  to="/contact"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Contact
-                </Link>
-                <Link to="/quote" onClick={() => setMobileMenuOpen(false)}>
-                  <Button className="w-full mt-3 bg-blue-600 hover:bg-blue-700 text-white">
-                    Get Quote
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </header>
+      <Header currentPage="about" />
 
       {/* Hero Banner Slider */}
       <section className="relative h-[70vh] overflow-hidden">
@@ -222,11 +103,33 @@ export default function About() {
               }`}
             >
               <div
-                className="w-full h-full bg-cover bg-center relative"
+                className="w-full h-full bg-cover bg-center relative cursor-pointer group"
                 style={{ backgroundImage: `url(${banner.image})` }}
+                onClick={() =>
+                  handleImageClick(banner.image, banner.title, banner.subtitle)
+                }
               >
                 {/* Dark overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+                <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300"></div>
+
+                {/* Click indicator */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                    <svg
+                      className="w-8 h-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                      />
+                    </svg>
+                  </div>
+                </div>
 
                 {/* JB Industries Watermark */}
                 <div className="absolute top-4 right-4 opacity-20">
@@ -359,14 +262,28 @@ export default function About() {
 
             <div className="space-y-4">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F71ee101920e54926895d3def67a1fd81?format=webp&width=800"
+                src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F71ee101920e54926895d3def67a1fd81?format=webp&width=1200&quality=85"
                 alt="JB Industries Vision and Mission"
-                className="w-full h-64 object-cover rounded-lg shadow-lg"
+                className="w-full h-64 object-cover rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                onClick={() =>
+                  handleImageClick(
+                    "https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F71ee101920e54926895d3def67a1fd81?format=webp&width=1920&quality=90",
+                    "JB Industries Vision and Mission",
+                    "Our Company Vision & Philosophy",
+                  )
+                }
               />
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fe3154f1abe564045998be81c12f8e0f6?format=webp&width=800"
+                src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fe3154f1abe564045998be81c12f8e0f6?format=webp&width=1200&quality=85"
                 alt="JB Industries Manufacturing Excellence"
-                className="w-full h-64 object-cover rounded-lg shadow-lg"
+                className="w-full h-64 object-cover rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                onClick={() =>
+                  handleImageClick(
+                    "https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fe3154f1abe564045998be81c12f8e0f6?format=webp&width=1920&quality=90",
+                    "JB Industries Manufacturing Excellence",
+                    "Advanced Manufacturing Capabilities",
+                  )
+                }
               />
             </div>
           </div>
@@ -585,17 +502,31 @@ export default function About() {
               </div>
             </div>
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F585fdb08345448d8bab6826aa92818aa?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F585fdb08345448d8bab6826aa92818aa?format=webp&width=1200&quality=85"
               alt="Quality Control Process"
-              className="w-full h-80 object-cover rounded-lg shadow-lg"
+              className="w-full h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              onClick={() =>
+                handleImageClick(
+                  "https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F585fdb08345448d8bab6826aa92818aa?format=webp&width=1920&quality=90",
+                  "Quality Control Process",
+                  "Traceability & Quality Confirmation",
+                )
+              }
             />
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F317c00de33714f74a7c637756a622cf2?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F317c00de33714f74a7c637756a622cf2?format=webp&width=1200&quality=85"
               alt="Testing Facilities and Equipment"
-              className="w-full h-80 object-cover rounded-lg shadow-lg"
+              className="w-full h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              onClick={() =>
+                handleImageClick(
+                  "https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F317c00de33714f74a7c637756a622cf2?format=webp&width=1920&quality=90",
+                  "Testing Facilities and Equipment",
+                  "Advanced Testing & Quality Assurance",
+                )
+              }
             />
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
@@ -772,6 +703,15 @@ export default function About() {
           </div>
         </div>
       </footer>
+
+      {/* Image Modal */}
+      <ImageModal
+        open={imageModalOpen}
+        onOpenChange={setImageModalOpen}
+        imageSrc={selectedImage.src}
+        imageAlt={selectedImage.alt}
+        title={selectedImage.title}
+      />
     </div>
   );
 }
