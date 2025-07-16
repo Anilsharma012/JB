@@ -856,7 +856,7 @@ export default function Index() {
         >
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
-              <div className="flex items-center space-x-3 mb-12 font-semibold">
+              <div className="flex items-center space-x-3 mb-12 font-semibold gap-12">
                 <div className="bg-white rounded-full p-2 flex items-center justify-center">
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fb733383f99d740dca5d656219d6f58b6?format=webp&width=800"
