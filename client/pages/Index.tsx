@@ -145,20 +145,20 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-3">
-             <img
-  src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fe47a2c8dea8b451da551bc04f83bbb06?format=webp&width=800"
-  alt="JB Industries Logo"
-  className="h-16 w-auto"
-/>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2Fe47a2c8dea8b451da551bc04f83bbb06?format=webp&width=800"
+                alt="JB Industries Logo"
+                className="h-16 w-auto"
+              />
 
-             <div className="hidden sm:block">
-  <h1 className="text-xl font-bold text-gray-900">
-    JB Industries
-  </h1>
-  <p className="text-sm text-blue-600">
-    Industries Fastening Solution
-  </p>
-</div>
+              <div className="hidden sm:block">
+                <h1 className="text-xl font-bold text-gray-900">
+                  JB Industries
+                </h1>
+                <p className="text-sm text-blue-600">
+                  &nbsp;Fastening Solution
+                </p>
+              </div>
             </Link>
 
             {/* Desktop Navigation */}
@@ -611,88 +611,71 @@ export default function Index() {
             </p>
           </div>
 
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            {/* Scrollable container */}
+            <div className="overflow-x-auto">
+              <div className="flex gap-4 md:grid md:grid-cols-5 md:gap-6 mb-6 min-w-max">
+                {[
+                  { src: "image/m.webp", alt: "FRICK Logo" },
+                  { src: "image/f.png", alt: "Mahindra Logo" },
+                  { src: "image/b.png", alt: "LGB Logo" },
+                  { src: "image/ff.png", alt: "Fastenal Logo" },
+                  { src: "image/l.png", alt: "Sansera Logo" },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors flex items-center justify-center shrink-0 w-40"
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="h-12 w-20 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
 
+            <div className="overflow-x-auto">
+              <div className="flex gap-4 md:grid md:grid-cols-4 md:gap-6 min-w-max">
+                {[
+                  { src: "image/s.jpg", alt: "Bossard Logo" },
+                  { src: "image/ss.jfif", alt: "Reyher Logo" },
+                  { src: "image/mm.png", alt: "C&S Electric Logo" },
+                  { src: "image/ll.jfif", alt: "Würth Logo" },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors flex items-center justify-center shrink-0 w-40"
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="h-12 w-20 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
 
+            {/* Company Names */}
+            <div className="mt-8 text-center">
+              <p className="text-sm text-gray-600 font-medium">
+                Trusted by Leading Companies: Frick • Mahindra • LGB • Fastenal
+                • Sansera • Bossard • Reyher • C&S Electric • Würth
+              </p>
+              <div className="flex justify-center mt-4">
+                <Badge
+                  variant="outline"
+                  className="text-green-700 border-green-200 bg-green-50"
+                >
+                  <CheckCircle className="h-3 w-3 mr-1" />
+                  200+ Satisfied Clients Worldwide
+                </Badge>
+              </div>
+            </div>
+          </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div className="bg-white rounded-lg shadow-lg p-8">
-  {/* Scrollable container */}
-  <div className="overflow-x-auto">
-    <div className="flex gap-4 md:grid md:grid-cols-5 md:gap-6 mb-6 min-w-max">
-      {[
-        { src: "image/m.webp", alt: "FRICK Logo" },
-        { src: "image/f.png", alt: "Mahindra Logo" },
-        { src: "image/b.png", alt: "LGB Logo" },
-        { src: "image/ff.png", alt: "Fastenal Logo" },
-        { src: "image/l.png", alt: "Sansera Logo" },
-      ].map((item, index) => (
-        <div
-          key={index}
-          className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors flex items-center justify-center shrink-0 w-40"
-        >
-          <img
-            src={item.src}
-            alt={item.alt}
-            className="h-12 w-20 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-          />
-        </div>
-      ))}
-    </div>
-  </div>
-
-  <div className="overflow-x-auto">
-    <div className="flex gap-4 md:grid md:grid-cols-4 md:gap-6 min-w-max">
-      {[
-        { src: "image/s.jpg", alt: "Bossard Logo" },
-        { src: "image/ss.jfif", alt: "Reyher Logo" },
-        { src: "image/mm.png", alt: "C&S Electric Logo" },
-        { src: "image/ll.jfif", alt: "Würth Logo" },
-      ].map((item, index) => (
-        <div
-          key={index}
-          className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors flex items-center justify-center shrink-0 w-40"
-        >
-          <img
-            src={item.src}
-            alt={item.alt}
-            className="h-12 w-20 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-          />
-        </div>
-      ))}
-    </div>
-  </div>
-
-  {/* Company Names */}
-  <div className="mt-8 text-center">
-    <p className="text-sm text-gray-600 font-medium">
-      Trusted by Leading Companies: Frick • Mahindra • LGB • Fastenal • Sansera • Bossard • Reyher • C&S Electric • Würth
-    </p>
-    <div className="flex justify-center mt-4">
-      <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50">
-        <CheckCircle className="h-3 w-3 mr-1" />
-        200+ Satisfied Clients Worldwide
-      </Badge>
-    </div>
-  </div>
-</div>
-
-
-
-
-        
           {/* <div className="bg-white rounded-lg shadow-lg p-8">
           
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-6">
@@ -798,16 +781,9 @@ export default function Index() {
               </div>
             </div>
           </div> */}
-
-
-
-
-
-
         </div>
       </section>
 
-  
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
