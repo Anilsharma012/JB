@@ -901,7 +901,7 @@ export default function Index() {
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-2">
+                <div className="flex items-start space-x-2 font-bold text-2xl">
                   <Mail className="h-4 w-4 mt-1 text-blue-400" />
                   <div>
                     <p className="text-sm">sales@jbindustries.com</p>
