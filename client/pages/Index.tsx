@@ -798,7 +798,7 @@ export default function Index() {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F955730e514434f058fe2d673677d0799%2F94d7e106b69749978fa87c8796dfc513?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F7f11a11f2e0b4c32880fc6dacb2b8a64%2F68a66372550542cea6deed6cd302b442"
               alt="JB Industries Stock & Warehousing Facilities"
               className="w-full h-auto object-contain rounded-lg shadow-lg"
             />
