@@ -912,7 +912,9 @@ export default function Index() {
                   <MapPin className="h-4 w-4 mt-1 text-blue-400" />
                   <div>
                     <p className="text-sm">Plot no. 107, Gaddi Khedi Road</p>
-                    <p className="text-sm">HSIIDC Industrial Area</p>
+                    <p className="text-sm">
+                      <strong>HSIIDC Industrial Area</strong>
+                    </p>
                     <p className="text-sm">Rohtak, Haryana 124001</p>
                   </div>
                 </div>
