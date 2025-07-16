@@ -864,11 +864,8 @@ export default function Index() {
                     className="h-12 w-auto"
                   />
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white">
-                    JB Industries
-                  </h3>
-                  <p className="text-white text-sm">Fastening Solution</p>
+                <div className="text-4xl font-semibold leading-7 ml-3">
+                  <p>JB Industries</p>
                 </div>
               </div>
               <p className="text-white mb-4">
