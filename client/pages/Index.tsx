@@ -868,6 +868,9 @@ export default function Index() {
                   <p>JB Industries</p>
                 </div>
               </div>
+              <p className="text-2xl font-semibold leading-5">
+                Fastening Solution
+              </p>
               <p className="text-white mb-4">
                 Leading manufacturer and supplier of high-quality fastening
                 solutions. ISO certified for excellence in quality management.
